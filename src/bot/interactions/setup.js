@@ -14,6 +14,7 @@ const {
     TextInputBuilder,
     TextInputStyle,
     ComponentType,
+    PermissionFlagsBits,
 } = require('discord.js');
 const uuid = require('uuid');
 const fs = require('fs');
@@ -228,6 +229,7 @@ async function run(interaction, member, client) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('setup')
-        .setDescription('Setup the bot'),
+        .setDescription('Setup the bot')
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     execute: run
 };
