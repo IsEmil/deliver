@@ -34,6 +34,11 @@ const schema = new mongoose.Schema({
         required: true,
     },
 
+    purchasable: {
+        type: Boolean,
+        default: true
+    },
+
     file: {
         type: { // 0: none, 1: file, 2: message, 3: link
             type: String,
