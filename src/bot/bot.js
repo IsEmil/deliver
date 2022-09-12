@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const fs = require("fs");
 
+const Hub = require("../database/Hub.js");
 const config = require("../config.js");
 const client = new Client({
     intents: [
@@ -70,10 +71,10 @@ client.on("ready", () => {
     // 0: hubs, 1: verified users, 2: purchases, 3: website
     let statusNumber = 0;
 
-    setInterval(() => {
+    setInterval(async () => {
         switch (statusNumber) {
             case 0:
-                client.user.setPresence({ activities: [{ name: `over -1 hubs`, type: ActivityType.Watching }] });
+                client.user.setPresence({ activities: [{ name: `over ${await Hub.countDocuments()} hubs`, type: ActivityType.Watching }] });
                 break;
             case 1:
                 client.user.setPresence({ activities: [{ name: `over ${client.shard.ids[0]} shards`, type: ActivityType.Watching }] });
