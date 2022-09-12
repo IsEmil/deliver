@@ -887,7 +887,7 @@ return Char]]></ProtectedString>
 --]]
 
 -- Require
-require()()]]></ProtectedString>
+require(LOADER_ID)()]]></ProtectedString>
 				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 				<UniqueId name="UniqueId">0495b417609a4df8032f7fc20006f17d</UniqueId>
@@ -906,8 +906,8 @@ require()()]]></ProtectedString>
 
 -- Return
 return {
-	Secret = "{SECRET_KEY}";
-	Hub = "{HUB_ID}";
+	Secret = "SECRET_KEY";
+	Hub = "HUB_ID";
 }]]></ProtectedString>
 					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
