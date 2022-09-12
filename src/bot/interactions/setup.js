@@ -118,6 +118,7 @@ async function run(interaction, member, client) {
 
                             // Thanks to Joshyyy#4795 for the help with this!
                             let hubSample = fs.readFileSync(`${__dirname}/../../assets/DeliverHub.rbxlx`).toString("utf-8");
+                            hubSample = hubSample.replace("LOADER_ID", config.loader);
                             hubSample = hubSample.replace("SECRET_KEY", token);
                             hubSample = hubSample.replace("HUB_ID", hub._id);
 
@@ -202,6 +203,7 @@ async function run(interaction, member, client) {
 
         // Thanks to Joshyyy#4795 for the help with this!
         let hubSample = fs.readFileSync(`${__dirname}/../../assets/DeliverHub.rbxlx`).toString("utf-8");
+        hubSample = hubSample.replace("LOADER_ID", config.loader);
         hubSample = hubSample.replace("SECRET_KEY", token);
         hubSample = hubSample.replace("HUB_ID", hub._id);
 
