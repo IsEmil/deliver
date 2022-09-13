@@ -95,7 +95,7 @@ async function run(interaction, member, client) {
 
         let Embed = new EmbedBuilder()
             .setTitle("Product Successful")
-            .setDescription("Your product has been created! You can now modify your product by using `/editproduct`.")
+            .setDescription("Your product has been created! You can now modify your product by using `/edit`.")
             .setColor(config.embeds.colors.success);
         await modalResponse.reply({
             embeds: [Embed]
