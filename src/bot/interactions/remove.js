@@ -113,7 +113,7 @@ async function run(interaction, member) {
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('Remove')
+        .setName('remove')
         .setDescription('Revoke a product.')
         .addUserOption(option =>
             option.setName('user')
