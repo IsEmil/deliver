@@ -22,6 +22,11 @@ const schema = new mongoose.Schema({
         type: String,
         default: "0",
     },
+    
+    roles: {
+        type: String,
+        default: "0",
+    },
 
     category: {
         type: String,
