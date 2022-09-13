@@ -48,7 +48,6 @@ httpListen.on("ROBLOX_PURCHASE", (m, data) => {
 
         let PurchaseReceipt = new discord.EmbedBuilder()
             .setTitle("Purchase Receipt")
-            .setTimestamp(new Date())
             .setColor(config.embeds.colors.default)
             .setDescription(`Thank you for your purchase at ${data.hub.name}\n\nAny product information/files will be sent below shortly.`)
             .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${data.client.roblox}&width=420&height=420&format=png`)
@@ -88,7 +87,6 @@ httpListen.on("ROBLOX_PURCHASE", (m, data) => {
                             embeds: [
                                 new discord.EmbedBuilder()
                                     .setTitle("New Purchase")
-                                    .setTimestamp(new Date())
                                     .setColor(config.embeds.colors.default)
                                     .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${data.client.roblox}&width=420&height=420&format=png`)
                                     .setDescription("A new purchase has been made. Please see below for details")
