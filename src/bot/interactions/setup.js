@@ -29,6 +29,15 @@ const Hub = require("../../database/Hub");
  * @param {Client} client
  */
 async function run(interaction, member, client) {
+    if (interaction.guild.ownerId !== interaction.user.id) return await interaction.reply({
+        embeds: [
+            new EmbedBuilder()
+                .setColor(config.embeds.colors.danger)
+                .setTitle("Error")
+                .setDescription("You must be the owner of this server to use this command.")
+        ]
+    });
+
     let hubRecord = await Hub.findOne({
         "info.guild": `${interaction.guild.id}`
     }).exec();
@@ -140,6 +149,16 @@ async function run(interaction, member, client) {
                         }).catch(async (err) => {
                             console.error(err)
                             return null
+                        });
+                        break;
+                    case "decline":
+                        await btn.reply({
+                            embeds: [
+                                new EmbedBuilder()
+                                    .setColor(config.embeds.colors.danger)
+                                    .setDescription("Error")
+                                    .setDescription("You have cancelled the setup process.")
+                            ]
                         });
                         break;
                 }
