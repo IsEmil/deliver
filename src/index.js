@@ -12,7 +12,12 @@ shardingManager.on("shardCreate", (shard) => {
 });
 
 httpListen.on("ROBLOX_PURCHASE", (m, data) => {
-    shardingManager.broadcastEval((client, context) => {
+    shardingManager.broadcastEval(async (client, context) => {
+        const data = context.data;
+        const config = context.config;
+        const discord = require("discord.js");
+        const axios = require("axios");
+
         /**
          * @param {Number} userId A Roblox user id
          * @returns {String} The Roblox username
@@ -47,7 +52,9 @@ httpListen.on("ROBLOX_PURCHASE", (m, data) => {
             .setColor(config.embeds.colors.default)
             .setDescription(`Thank you for your purchase at ${data.hub.name}\n\nAny product information/files will be sent below shortly.`)
             .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${data.client.roblox}&width=420&height=420&format=png`)
-            .addField("Product", data.product.name, true);
+            .addFields(
+                { name: "Product", value: `${data.product.name}`, inline: true },
+            );
         client.users.fetch(data.client.discord).then((user) => {
             user.send({ embeds: [PurchaseReceipt] }).then(async () => {
                 switch (data.product.file.type) {
@@ -58,7 +65,7 @@ httpListen.on("ROBLOX_PURCHASE", (m, data) => {
                             .setColor(config.embeds.colors.default);
                         await user.send({
                             embeds: [MessageEmbed]
-                        });
+                        }).catch(() => { });
                         break;
                     case "2":
                         let FileEmbed = new discord.EmbedBuilder()
@@ -67,14 +74,14 @@ httpListen.on("ROBLOX_PURCHASE", (m, data) => {
                             .setColor(config.embeds.colors.default);
                         await user.send({
                             embeds: [FileEmbed]
-                        });
+                        }).catch(() => { });
                         break;
                 }
             }).catch(() => { });
         }).catch(() => { });
 
         if (data.hub.configuration.channels.purchaseChannel.length > 0) {
-            client.guilds.fetch(data.hub.info.guild).then((guild) => {
+            client.guilds.fetch(data.hub.info.guild).then(async (guild) => {
                 if (guild.available) {
                     guild.channels.fetch(data.hub.configuration.channels.purchaseChannel).then(async (purchaseChannel) => {
                         purchaseChannel.send({
@@ -86,18 +93,37 @@ httpListen.on("ROBLOX_PURCHASE", (m, data) => {
                                     .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${data.client.roblox}&width=420&height=420&format=png`)
                                     .setDescription("A new purchase has been made. Please see below for details")
                                     .addFields(
-                                        { name: "Roblox User", value: `[${await getRobloxUsername(data.client.roblox)}](https://www.roblox.com/users/${data.client.roblox}/profile) (${data.user.robloxId})`, inline: true },
+                                        { name: "Roblox User", value: `[${await getRobloxUsername(data.client.roblox)}](https://www.roblox.com/users/${data.client.roblox}/profile) (${data.client.roblox})`, inline: true },
                                         { name: "Discord User", value: `${await getDiscordUsername(data.client.discord)} (${data.client.discord})`, inline: true },
                                         { name: "Product", value: `\`${data.product.name}\``, inline: true },
                                     )
                             ]
-                        })
+                        }).catch(() => { });
                     }).catch(() => { });
                 }
             }).catch(() => { });
         }
-        m.reply(true);
-    }, { shard: 0, context: { data: data } });
+    }, { shard: 0, context: { data: JSON.parse(data), config: require("./config") } });
+
+    m.reply(true);
+});
+
+httpListen.on("PURCHASE_RANK", (m, data) => {
+    shardingManager.broadcastEval(async (client, context) => {
+        const data = context.data;
+
+        client.guilds.fetch(data.hub.info.guild).then(async (guild) => {
+            if (guild.available) {
+                guild.roles.fetch(data.product.roles).then(async (role) => {
+                    guild.members.fetch(data.client.discord).then(async (member) => {
+                        member.roles.add(role).then(() => { }).catch(() => { })
+                    }).catch(() => { });
+                }).catch(() => { });
+            }
+        }).catch(() => { });
+    }, { shard: 0, context: { data: JSON.parse(data) } });
+
+    m.reply(true);
 });
 
 shardingManager.spawn();
