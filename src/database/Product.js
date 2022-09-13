@@ -24,9 +24,8 @@ const schema = new mongoose.Schema({
     },
 
     category: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Category",
-        defualt: null,
+        type: String,
+        default: "N/A",
     },
 
     devProduct: {
