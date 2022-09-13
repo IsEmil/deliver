@@ -4,6 +4,7 @@ const {
     GatewayIntentBits,
     EmbedBuilder,
     ActivityType,
+    Partials,
 } = require("discord.js");
 const { REST } = require('@discordjs/rest');
 const mongoose = require("mongoose");
@@ -15,7 +16,22 @@ const config = require("../config.js");
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
-        GatewayIntentBits.DirectMessages
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildMessageTyping,
+        GatewayIntentBits.GuildMessageReactions,
+
+        GatewayIntentBits.DirectMessages,
+        GatewayIntentBits.DirectMessageTyping,
+        GatewayIntentBits.DirectMessageReactions,
+
+        GatewayIntentBits.MessageContent,
+    ],
+    partials: [
+        Partials.Channel,
+        Partials.Message,
+        Partials.User,
+        Partials.GuildMember,
+        Partials.Reaction,
     ]
 });
 
