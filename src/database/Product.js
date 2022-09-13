@@ -40,7 +40,7 @@ const schema = new mongoose.Schema({
     },
 
     file: {
-        type: { // 0: none, 1: file, 2: message, 3: link
+        type: { // 0: none, 1: message, 2: link
             type: String,
             default: "0",
         },
