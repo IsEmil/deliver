@@ -144,6 +144,7 @@ mongoose.connect(config.mongo, {
         console.log("[Deliver]: Logged In");
         deployCommands();
         loadCommands();
+        require("../http/http.js")();
     }).catch((err) => {
         console.log(err)
     });
