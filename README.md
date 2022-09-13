@@ -47,6 +47,8 @@ Remember to also add a .env file (to get the example just view .env.example)
 module.exports = exports = {
     token: process.env.TOKEN, // These you don't touch.
     mongo: process.env.MONGO_URI, // These you don't touch.
+    port: 3000, // Your api port that you will port forward
+    loader: 0, // Loader module for the hub game in roblox
     guild: "", // Your discord guild id here so slash commands can be created.
     global_slash: false, // If you wish the bot to have global slash commands across multiple guilds
 
@@ -55,7 +57,8 @@ module.exports = exports = {
             default: "#2f3136",
             primary: "#4752c4",
             success: "#359553",
-            danger: "#d53b3e"
+            danger: "#d53b3e",
+            warning: "#e7c000"
         }
     }
 }
