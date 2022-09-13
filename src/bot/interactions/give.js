@@ -116,7 +116,7 @@ async function run(interaction, member) {
         case "1":
             let MessageEmbed = new EmbedBuilder()
                 .setTitle("Product Message")
-                .setDescription(`For the product: ${product.name}\n\`\`\`${product.file.target}\`\`\``)
+                .setDescription(`For the product: ${productRecord.name}\n\`\`\`${productRecord.file.target}\`\`\``)
                 .setColor(config.embeds.colors.default);
             await user.send({
                 embeds: [MessageEmbed]
@@ -125,7 +125,7 @@ async function run(interaction, member) {
         case "2":
             let FileEmbed = new EmbedBuilder()
                 .setTitle("Product Link")
-                .setDescription(`For the product: ${product.name}\n\n[${product.file.target}](${product.file.target})`)
+                .setDescription(`For the product: ${productRecord.name}\n\n[${productRecord.file.target}](${productRecord.file.target})`)
                 .setColor(config.embeds.colors.default);
             await user.send({
                 embeds: [FileEmbed]
