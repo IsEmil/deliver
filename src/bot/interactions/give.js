@@ -80,7 +80,7 @@ async function run(interaction, member) {
     const match = clientRecord.purchases.find((purchase) => {
         const purchaseProduct = purchase.product.toString();
 
-        return purchaseProduct === productRecord.toString();
+        return purchaseProduct === productRecord._id.toString();
     });
 
     if (match) {
@@ -118,7 +118,7 @@ async function run(interaction, member) {
                 .setTitle("Product Message")
                 .setDescription(`For the product: ${product.name}\n\`\`\`${product.file.target}\`\`\``)
                 .setColor(config.embeds.colors.default);
-            user.send({
+            await user.send({
                 embeds: [MessageEmbed]
             });
             break;
@@ -127,7 +127,7 @@ async function run(interaction, member) {
                 .setTitle("Product Link")
                 .setDescription(`For the product: ${product.name}\n\n[${product.file.target}](${product.file.target})`)
                 .setColor(config.embeds.colors.default);
-            user.send({
+            await user.send({
                 embeds: [FileEmbed]
             });
             break;
@@ -144,8 +144,8 @@ async function run(interaction, member) {
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('grant')
-        .setDescription('Grant a product.')
+        .setName('give')
+        .setDescription('Give a product.')
         .addUserOption(option =>
             option.setName('user')
                 .setDescription('The user who you wish to give the product to')
