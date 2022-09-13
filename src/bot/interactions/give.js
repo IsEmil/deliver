@@ -134,8 +134,8 @@ async function run(interaction, member) {
     }
 
     let Embed = new EmbedBuilder()
-        .setTitle("Granted")
-        .setDescription("You have successfully granted a user the product.")
+        .setTitle("Given")
+        .setDescription("You have successfully given a user the product.")
         .setColor(config.embeds.colors.success);
     return await interaction.reply({
         embeds: [Embed]
