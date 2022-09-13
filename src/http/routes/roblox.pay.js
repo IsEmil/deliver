@@ -49,6 +49,10 @@ module.exports = async (req, res) => {
             return res.status(200).send({ status: 400, message: "Bad Request" });
         };
 
+        if (hubRecord.info.token !== req.query.token) {
+            return res.status(200).send({ status: 403, message: "NOT_AUTHENTICATED" });
+        };
+
         const purchaseObject = clientRecord.purchases.create({
             product: productRecord._id,
             hub: hubRecord._id,
