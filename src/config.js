@@ -13,7 +13,8 @@ module.exports = exports = {
             default: "#2f3136",
             primary: "#4752c4",
             success: "#359553",
-            danger: "#d53b3e"
+            danger: "#d53b3e",
+            warning: "#e7c000"
         }
     }
 }
