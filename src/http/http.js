@@ -17,6 +17,8 @@ app.get("/", (_, res) => {
 });
 
 app.get("/roblox/pay", require("./routes/roblox.pay.js"));
+app.get("/product/get", require("./routes/product.get.js"));
+
 
 app.get("*", (_, res) => {
     res.status(404).send("Not Found");
