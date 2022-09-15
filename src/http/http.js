@@ -16,6 +16,7 @@ app.get("/", (_, res) => {
     res.status(200).send("OK");
 });
 
+app.get("/hub/get", require("./routes/hub.get.js"));
 app.get("/roblox/pay", require("./routes/roblox.pay.js"));
 app.get("/client/get", require("./routes/client.get.js"));
 app.get("/product/get", require("./routes/product.get.js"));
