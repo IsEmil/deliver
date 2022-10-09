@@ -1,5 +1,5 @@
 <!-- Title -->
-<h1 align="center">Deliver Bot</h1>
+<h1 align="center">Deliver Bot (UNFINISHED)</h1>
   <p align="center">
     This is a Roblox Hub Bot that supports multi-guilds.
     <br />
